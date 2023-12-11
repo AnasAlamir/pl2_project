@@ -33,8 +33,8 @@ public class Courses_Management_System {
     String branch = input.nextLine();
     System.out.print("Enter value for price (String): ");
     String price = input.nextLine();
-    System.out.print("Enter value for parent_course (String): ");
-    String parent_course = input.nextLine();
+    System.out.print("Enter value for course_name (String): ");
+    String course_name = input.nextLine();
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     System.out.println("Enter value for start_date (Date) in (format: yyyy-MM-dd) : ");
@@ -50,16 +50,16 @@ public class Courses_Management_System {
     System.out.print("Enter value for days_of_course (int): ");
     int days_of_course = input.nextInt();
     
-        System.out.println("Enter value for end_date (Date) in (format: yyyy-MM-dd) : ");
-    String end_date1 = input.next();
-    Date end_date = null;
-    try {
-        end_date = dateFormat.parse(end_date1);
-    }
-    catch (ParseException ex) {
-            System.out.println("Error: Invalid date format. Please enter a date in the format yyyy-MM-dd.");
-        }
-    Courses course = new Courses(room, branch, price, parent_course, start_date, days_of_course, end_date);
+//        System.out.println("Enter value for end_date (Date) in (format: yyyy-MM-dd) : ");
+//    String end_date1 = input.next();
+//    Date end_date = null;
+//    try {
+//        end_date = dateFormat.parse(start_date+days_of_course-1);
+//    }
+//    catch (ParseException ex) {
+//            System.out.println("Error: Invalid date format. Please enter a date in the format yyyy-MM-dd.");
+//        }
+    Courses course = new Courses(room, branch, price, course_name, start_date, days_of_course);
     course.createPage();
     }
     

@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
@@ -19,7 +20,7 @@ public class Courses {
     private String room;
     private String branch;
     private String price;
-    private String parent_course;
+    private String course_name;
     private Date start_date;
     private int days_of_course;
     private Date end_date;
@@ -30,14 +31,16 @@ public class Courses {
     public Courses() {
     }
 
-    public Courses(String room, String branch, String price, String parent_course, Date start_date, int days_of_course, Date end_date) {
+    public Courses(String room, String branch, String price, String parent_course, Date start_date, int days_of_course) {
         this.room = room;
         this.branch = branch;
         this.price = price;
-        this.parent_course = parent_course;
+        this.course_name = parent_course;
         this.start_date = start_date;
         this.days_of_course = days_of_course;
-        this.end_date = end_date;
+        long daysInMillis = days_of_course * 24L * 60 * 60 * 1000;
+        Date e = new Date(start_date.getTime() + daysInMillis);
+        this.end_date = e;     
     }
 ///
     public String getRoom() {
@@ -64,12 +67,12 @@ public class Courses {
         this.price = price;
     }
 
-    public String getParent_course() {
-        return parent_course;
+    public String getCourse_name() {
+        return course_name;
     }
 
-    public void setParent_course(String parent_course) {
-        this.parent_course = parent_course;
+    public void setCourse_name(String parent_course) {
+        this.course_name = parent_course;
     }
 
     public Date getStart_date() {
@@ -91,40 +94,47 @@ public class Courses {
     public Date getEnd_date() {
         return end_date;
     }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
-    }
+//
+//    public void setEnd_date(Date end_date) {
+//        this.end_date = end_date;
+//    }
     
     ///
     
     public void createPage(){
-        File file = new File("Courses.txt");
-        try{
-
-            if(file.createNewFile())
-            {
-                System.out.println("File created: " + file.getName());
-            }
-            else
-                System.out.println("File already exists.");       
-        }
-        catch(IOException ex){
-            System.out.println("Exception : " + ex.getMessage());
-        }
-        try{
-            FileWriter fr = new FileWriter(file,true);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String start_date = dateFormat.format(this.start_date);
-            String end_date = dateFormat.format(this.end_date);
-            String data = parent_course+", "+room+", "+branch+", "+price+", "+start_date+", "+days_of_course+", "+end_date+"\n";
-            fr.append(data);
-            fr.close();
-            System.out.println("Successfully wrote to the file.");
-        }
-        catch(IOException ex){
-            System.out.println("Exception : " + ex.getMessage()); 
-        }
+        FileHandler file = new FileHandler();
+        StringBuilder str = new StringBuilder();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String start_date = dateFormat.format(this.start_date);
+        String end_date = dateFormat.format(this.end_date);
+        str.append(course_name+","+room+","+branch+","+price+","+start_date+","+days_of_course+","+end_date+"\n__________________________________\n");
+        file.storeFile("course1.txt", str.toString());
+        //File file = new File("Courses.txt");
+//        try{
+//
+//            if(file.createNewFile())
+//            {
+//                System.out.println("File created: " + file.getName());
+//            }
+//            else
+//                System.out.println("File already exists.");       
+//        }
+//        catch(IOException ex){
+//            System.out.println("Exception : " + ex.getMessage());
+//        }
+//        try{
+//            FileWriter fr = new FileWriter(file,true);
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            String start_date = dateFormat.format(this.start_date);
+//            String end_date = dateFormat.format(this.end_date);
+//            String data = parent_course+", "+room+", "+branch+", "+price+", "+start_date+", "+days_of_course+", "+end_date+"\n";
+//            fr.append(data);
+//            fr.close();
+//            System.out.println("Successfully wrote to the file.");
+//        }
+//        catch(IOException ex){
+//            System.out.println("Exception : " + ex.getMessage()); 
+//        }
     }
     
 }
