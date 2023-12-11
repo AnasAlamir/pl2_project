@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
  *
  * @author USER
  */
-public class Courses {
+public class Courses implements Operations{
     private String room;
     private String branch;
     private String price;
@@ -94,13 +94,21 @@ public class Courses {
     public Date getEnd_date() {
         return end_date;
     }
-//
-//    public void setEnd_date(Date end_date) {
-//        this.end_date = end_date;
-//    }
-    
-    ///
-    
+
+    @Override
+    public void add() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
     public void createPage(){
         FileHandler file = new FileHandler();
         StringBuilder str = new StringBuilder();
@@ -109,32 +117,6 @@ public class Courses {
         String end_date = dateFormat.format(this.end_date);
         str.append(course_name+","+room+","+branch+","+price+","+start_date+","+days_of_course+","+end_date+"\n__________________________________\n");
         file.storeFile("course1.txt", str.toString());
-        //File file = new File("Courses.txt");
-//        try{
-//
-//            if(file.createNewFile())
-//            {
-//                System.out.println("File created: " + file.getName());
-//            }
-//            else
-//                System.out.println("File already exists.");       
-//        }
-//        catch(IOException ex){
-//            System.out.println("Exception : " + ex.getMessage());
-//        }
-//        try{
-//            FileWriter fr = new FileWriter(file,true);
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            String start_date = dateFormat.format(this.start_date);
-//            String end_date = dateFormat.format(this.end_date);
-//            String data = parent_course+", "+room+", "+branch+", "+price+", "+start_date+", "+days_of_course+", "+end_date+"\n";
-//            fr.append(data);
-//            fr.close();
-//            System.out.println("Successfully wrote to the file.");
-//        }
-//        catch(IOException ex){
-//            System.out.println("Exception : " + ex.getMessage()); 
-//        }
     }
     
 }
