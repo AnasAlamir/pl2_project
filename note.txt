@@ -1,0 +1,7 @@
+uniqe course
+//    private Student student;
+//    private Instructor instructor;
+//    private Grades grades;
+handel input and lowercase,$
+choose course
+public String toString()
